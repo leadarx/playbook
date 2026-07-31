@@ -26,7 +26,7 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            padding-bottom: 80px; /* Space for bottom nav if added later */
+            padding-bottom: 80px;
         }
 
         .header {
@@ -60,11 +60,11 @@
             gap: 0.5rem;
             background: white;
             border-bottom: 1px solid var(--border);
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none; 
         }
         
         .categories::-webkit-scrollbar { 
-            display: none; /* Chrome */
+            display: none; 
         }
 
         .category-btn {
@@ -205,171 +205,403 @@
             {
                 id: 1,
                 category: "Pricing & Plans",
-                title: "How much is the course? (Send Price)",
+                title: "1. How much is the course?",
                 intent: "Client asks for price without context",
                 text: "Hi [Name]! Temidayo here from LeadarX.\n\nQuick one before I send pricing: are you looking to learn Data Analysis to *grow in your current job*, or *land a fresh new role*?"
             },
             {
                 id: 2,
                 category: "Pricing & Plans",
-                title: "3 Class Options",
+                title: "1.1 The 3 Class Options",
                 intent: "Send after they answer the first question",
                 text: "Awesome! We have 3 flexible class options depending on your schedule:\n\n1. *Real-Time Live Class:* ₦65,000 total (Saturdays 8am to 11am live on Zoom/Teams).\n2. *Self-Paced Class:* ₦45,000 total (24/7 pre-recorded video lessons).\n3. *One-on-One Class:* ₦295,000 total (Personal dedicated instructor).\n\nBest part: *you only pay ₦5,000 today to lock your seat!*\n\nWhich of these 3 options fits your learning style best?"
             },
             {
                 id: 3,
                 category: "Pricing & Plans",
-                title: "How do installments work?",
+                title: "2. How do installments work?",
                 intent: "Explaining the 3 payment splits",
                 text: "We split tuition into 3 light payments so you do not feel the weight:\n\n1. *Today:* ₦5,000 deposit (Locks your seat before enrollment closes August 12).\n2. *August 21st (1st Installment):* ₦35,000 for Real-Time (or ₦25,000 for Self-Paced).\n3. *September 18th (2nd Installment):* ₦25,000 for Real-Time (or ₦15,000 for Self-Paced).\n\nPlus, you can top up *₦1,000 or more* into your wallet anytime before the due dates!\n\nShould I set up your portal account right now so you can see the payment breakdown?"
             },
             {
                 id: 4,
                 category: "Pricing & Plans",
-                title: "Full Payment Discount",
+                title: "3. Full Payment Discount",
                 intent: "Client wants to pay at once",
                 text: "Yes! We offer a full-payment discount if you pay 100% upfront today:\n\n1. *Real-Time Live:* Pay *₦60,000* at once (saves you ₦5,000 instantly).\n2. *Self-Paced:* Pay *₦42,000* at once (saves you ₦3,000 instantly).\n3. *One-on-One:* Pay *₦285,000* at once (saves you ₦10,000 instantly).\n\nWould you prefer to take the full-payment discount today, or start with the *₦5,000 deposit*?"
             },
             {
                 id: 5,
                 category: "Pricing & Plans",
-                title: "Wallet Payment Logic",
-                intent: "Explaining flexible top-ups",
-                text: "We have the most flexible payment system in Nigeria!\n\nYou start with just *₦5,000 application deposit* today. After that, you can add *₦1,000, ₦2,000, or any amount* into your LeadarX portal wallet bit by bit whenever you have spare cash!\n\nAs long as your 1st installment lands on or before *August 21st* and your 2nd installment lands on or before *September 18th*, your portal stays active.\n\nDoes paying bit by bit into your wallet make it stress-free for you?"
+                title: "4. Tell me more about One-on-One",
+                intent: "Detailing the premium tier",
+                text: "Our *One-on-One Class (₦295,000)* is our premium personal coaching program!\n\nYou get a dedicated senior data instructor assigned exclusively to you. You choose your own class days and times, and the curriculum is customized to your exact career goals.\n\nPayment breakdown: ₦5,000 deposit today, ₦160,000 by August 21st, and ₦130,000 by September 18th. (Or pay ₦285,000 at once to save ₦10,000).\n\nShould I set up a private call with an instructor to tailor your schedule?"
             },
             {
                 id: 6,
                 category: "Pricing & Plans",
-                title: "It is too expensive / No money",
+                title: "5. Tell me more about Self-Paced",
+                intent: "Detailing the pre-recorded tier",
+                text: "Our *Self-Paced Class (₦45,000)* is built for super busy professionals!\n\nYou get 24/7 lifetime access to all HD video modules (Excel, SQL, Power BI, Python), study materials, instructor Q&A support, and the official verifiable certificate.\n\nPayment breakdown: ₦5,000 deposit today, ₦25,000 by August 21st, and ₦15,000 by September 18th. (Or pay ₦42,000 at once to save ₦3,000).\n\nDoes learning on your own weekly schedule work better for you than live Saturday classes?"
+            },
+            {
+                id: 7,
+                category: "Pricing & Plans",
+                title: "6. Wallet Payment Logic",
+                intent: "Explaining flexible top-ups",
+                text: "We have the most flexible payment system in Nigeria!\n\nYou start with just *₦5,000 application deposit* today. After that, you can add *₦1,000, ₦2,000, or any amount* into your LeadarX portal wallet bit by bit whenever you have spare cash!\n\nAs long as your 1st installment lands on or before *August 21st* and your 2nd installment lands on or before *September 18th*, your portal stays active.\n\nDoes paying bit by bit into your wallet make it stress-free for you?"
+            },
+            {
+                id: 8,
+                category: "Pricing & Plans",
+                title: "7. It is too expensive / No money",
                 intent: "Handling the money objection using ROI and Wallet",
                 text: "I completely understand [Name]! Money is tight right now.\n\nThat is why we created the *LeadarX Wallet*: you do not need full tuition at once. You can deposit *₦1,000 or ₦2,000* into your portal wallet whenever you have extra cash before August 21st and September 18th!\n\nPlus, entry-level data analysts in Nigeria earn *₦150,000 to ₦250,000 monthly*. You earn this tuition back in under 3 weeks on the job.\n\nIf you start with just *₦5,000 today*, would that make it manageable for you?"
+            },
+            {
+                id: 9,
+                category: "Pricing & Plans",
+                title: "8. Hidden Fees?",
+                intent: "Client asks if there are hidden charges",
+                text: "Zero hidden fees!\n\nYour ₦5,000 seat deposit goes directly toward your total tuition. It covers your student portal setup, study files, software guides, and certificate verification.\n\nShould I create your portal account right now so you can log in and see it?"
+            },
+            {
+                id: 10,
+                category: "Pricing & Plans",
+                title: "9. Can I pay with bank transfer?",
+                intent: "Client ready to pay",
+                text: "You can pay easily using bank transfer or debit card!\n\nWhat email address should I use to create your portal account and payment link right now?"
             },
 
             // SECTION 2: Advanced Objections
             {
-                id: 7,
+                id: 11,
                 category: "Objections (Pro)",
-                title: "I can learn it on YouTube",
+                title: "10. I can learn it on YouTube",
                 intent: "When client thinks free resources are enough",
                 text: "You can definitely find great videos on YouTube [Name]! The challenge is YouTube gives you *information*, not *transformation*.\n\nWhen you get stuck on a complex SQL error in Week 4, YouTube cannot review your screen. Here, you get live mentor support, structured real-world projects, and a *verifiable certificate* employers trust.\n\nAre you looking for just casual learning, or to become job-ready fast?"
             },
             {
-                id: 8,
+                id: 12,
                 category: "Objections (Pro)",
-                title: "I need to discuss with my spouse",
+                title: "11. I need to discuss with my spouse",
                 intent: "When client stalls for partner approval",
                 text: "Absolutely [Name], family comes first!\n\nTo help them understand the value, should I send you a quick 1-page summary showing how this 10-week program can boost your family's income by ₦150k to ₦250k monthly?"
             },
             {
-                id: 9,
+                id: 13,
                 category: "Objections (Pro)",
-                title: "I am too busy with work/kids",
+                title: "12. I am too busy with work/kids",
                 intent: "Handling the 'No Time' objection",
                 text: "That is exactly why 70% of our students are working parents and professionals!\n\nThe live class is only 3 hours on Saturday morning. Plus, we upload the recordings so you can watch in 20-minute chunks during the week when the kids are asleep.\n\nDoes dedicating just 3 hours on a Saturday sound like something you can squeeze in?"
             },
 
             // SECTION 3: Fears & Logistics
             {
-                id: 10,
+                id: 14,
                 category: "Fears & Logistics",
-                title: "I am a complete beginner",
+                title: "13. I am a complete beginner",
                 intent: "Client is scared of math/coding",
                 text: "Honestly [Name], 90% of our students start from absolute ZERO!\n\nWeek 1 starts with *'What is Data Analysis?'*. There is zero coding and no math beyond checking your bank alert. We teach you step-by-step using Excel, SQL, and Power BI.\n\nWhat is your biggest concern right now: learning the tools or finding time to study?"
             },
             {
-                id: 11,
+                id: 15,
                 category: "Fears & Logistics",
-                title: "Do I need a laptop?",
+                title: "14. Do I need a laptop?",
                 intent: "Hardware requirements",
                 text: "You can watch all live classes and video lessons directly on your phone! 📱\n\nHowever, to practice Excel, SQL, and Power BI for your portfolio project, you will need access to a laptop or desktop computer (even a borrowed one works great).\n\nDo you already have a laptop, or plan to get access to one before Class 1 on Aug 15th?"
             },
             {
-                id: 12,
+                id: 16,
                 category: "Fears & Logistics",
-                title: "I don't have a laptop yet",
+                title: "15. I don't have a laptop yet",
                 intent: "Client wants to join but has no laptop",
                 text: "Yes, absolutely! You can join Cohort 1 today with your *₦5,000 deposit* before enrollment closes August 12th.\n\nYou can watch the first 2 weeks of lectures on your phone while arranging a laptop before practical project assignments begin in Week 3.\n\nShould we lock your seat today so you do not miss Cohort 1 registration?"
             },
             {
-                id: 13,
+                id: 17,
                 category: "Fears & Logistics",
-                title: "Can I transition from Nursing/Law/Teaching?",
+                title: "16. Can I transition from Nursing/Law/Teaching?",
                 intent: "Career switchers",
                 text: "That is actually your BIGGEST advantage! 🔥\n\nCompanies love data analysts who understand industries like healthcare, finance, or education. You already understand how business works; we just teach you how to analyze the numbers.\n\nAre you looking to apply data skills in your current industry, or switch to tech completely?"
             },
             {
-                id: 14,
+                id: 18,
                 category: "Fears & Logistics",
-                title: "What if I miss a live class?",
+                title: "17. Is there an age or degree limit?",
+                intent: "BSc / HND worries",
+                text: "No age limit and no degree required!\n\nEmployers in data analysis only care about one thing: *Can you build dashboards and clean data?* That is why you graduate with a real portfolio project to prove your skills.\n\nAre you currently working, studying, or looking for fresh opportunities?"
+            },
+
+            // SECTION 4: Format & Schedule
+            {
+                id: 19,
+                category: "Format & Schedule",
+                title: "18. Is it physical or online?",
+                intent: "Location query",
+                text: "It is 100% online on *Microsoft Teams*, so you save money and time on traffic! 🚗\n\nYou get live interactive classes, HD class recordings, and a private WhatsApp community with your classmates.\n\nDo you prefer joining live on *Saturdays 8am to 11am*, or watching *recorded sessions at your own pace*?"
+            },
+            {
+                id: 20,
+                category: "Format & Schedule",
+                title: "19. What if I miss a live class?",
                 intent: "Missing Saturday class",
                 text: "No worries at all! Every live class is recorded in HD and uploaded to your student portal within 2 hours.\n\nYou can rewatch it anytime, 24/7, on your phone or laptop.\n\nWould Saturday live classes fit your routine, or would you rely more on recordings?"
             },
-
-            // SECTION 4: Jobs & Legitimacy
             {
-                id: 15,
+                id: 21,
+                category: "Format & Schedule",
+                title: "20. How long is the program?",
+                intent: "Duration query",
+                text: "It is an intensive *10-Week Practical Bootcamp*!\n\nBy Week 4, you will build real Power BI dashboards. By Week 10, you will complete your portfolio project and have your CV rewritten for job applications.\n\nEnrollment closes *August 12th* and Class 1 starts *August 15th*. Are you ready to get skilled before Q4?"
+            },
+            {
+                id: 22,
+                category: "Format & Schedule",
+                title: "21. What software will I learn?",
+                intent: "Tools query",
+                text: "You will master the top industry tools requested by employers:\n\n1. *Microsoft Excel* (Data cleaning & formulas)\n2. *SQL* (Database querying)\n3. *Power BI* (Interactive visual dashboards)\n4. *Python & AI Tools* (Data automation & ChatGPT for analysts)\n\nWe provide step-by-step videos showing you how to install all software for free!\n\nHave you ever used Excel before, or starting completely from scratch?"
+            },
+            {
+                id: 23,
+                category: "Format & Schedule",
+                title: "22. Can I do this with a full-time job?",
+                intent: "Busy workers",
+                text: "Yes! Over 70% of our students work full-time jobs.\n\nLive classes run only on *Saturdays (8am to 11am)*, leaving your weekdays completely free. If you ever work on Saturday, you can watch the recording in the evening.\n\nDoes 3 hours on Saturday morning sound workable with your job schedule?"
+            },
+
+            // SECTION 5: Jobs & Trust
+            {
+                id: 24,
                 category: "Jobs & Trust",
-                title: "Will you get me a job?",
+                title: "23. Will you get me a job?",
                 intent: "The Job Guarantee Truth",
                 text: "Straight talk [Name]: nobody can promise you a job, and anyone who does is lying to you!\n\nHere is what we DO: We have a full module called *'Getting A Job As A Data Analyst'*. We rewrite your CV, optimize your LinkedIn profile, prepare you for interviews, and build a *real portfolio project* to present to employers.\n\nWe make you employable; the applying is yours!\n\nAre you actively job hunting right now, or preparing for later?"
             },
             {
-                id: 16,
+                id: 25,
                 category: "Jobs & Trust",
-                title: "Is this a scam?",
+                title: "24. Can I get remote jobs from abroad?",
+                intent: "US/UK Remote work query",
+                text: "Yes! Data analysis is one of the top remote skills globally because data can be analyzed from anywhere.\n\nWe teach you how to set up your LinkedIn profile and portfolio to apply for global remote opportunities on platforms like Upwork and LinkedIn.\n\nIs your goal to work with local Nigerian companies, or target international remote roles?"
+            },
+            {
+                id: 26,
+                category: "Jobs & Trust",
+                title: "25. Will I get a certificate?",
+                intent: "Verifiable certificates",
+                text: "Yes! You receive an official *Verifiable LeadarX Certificate of Completion* with a unique ID that employers can verify online at leadarx.com/verify.\n\nYou can attach it directly to your CV and LinkedIn profile.\n\nShould I show you how our certificate verification portal works?"
+            },
+            {
+                id: 27,
+                category: "Jobs & Trust",
+                title: "26. Is this legit or a scam?",
                 intent: "Building Trust",
                 text: "I love that you are cautious; there are too many scams online!\n\nYou can check our official website at https://leadarx.com (RC: 9719635) or view student project samples.\n\nPlus, you only pay *₦5,000 to start*, and you get instant portal access before paying any balance.\n\nShould I drop a sample of a student Power BI project here for you to see?"
             },
             {
-                id: 17,
+                id: 28,
                 category: "Jobs & Trust",
-                title: "Will I get a certificate?",
-                intent: "Verifiable certificates",
-                text: "Yes! You receive an official *Verifiable LeadarX Certificate of Completion* with a unique ID that employers can verify online at leadarx.com/verify.\n\nYou can attach it directly to your CV and LinkedIn profile.\n\nShould I show you how our certificate verification portal works?"
+                title: "27. What if I get stuck?",
+                intent: "Homework support query",
+                text: "You are never left alone!\n\nYou will be added to the *Cohort 1 Student WhatsApp Group* with your instructor and teaching assistants. Whenever you get stuck, you post a screenshot and get help fast.\n\nDoes having dedicated mentor support give you confidence to get started?"
             },
 
-            // SECTION 5: Anti-Ghosting Follow-Ups
+            // SECTION 6: Closing & Follow-Ups
             {
-                id: 18,
+                id: 29,
                 category: "Follow-Ups",
-                title: "Client says: 'Okay / Noted'",
+                title: "28. Client says: 'Okay / Noted'",
                 intent: "Never say 'Alright'. Reply with this:",
                 text: "Awesome! So what is the verdict [Name]: Real-Time Live Class, Self-Paced, or One-on-One?"
             },
             {
-                id: 19,
+                id: 30,
                 category: "Follow-Ups",
-                title: "Client says: 'I will think about it'",
+                title: "29. Client says: 'I will think about it'",
                 intent: "Isolating the objection",
                 text: "No problem at all, take your time!\n\nJust so I do not bother you unnecessarily: what is the main thing on your mind: the price, the Saturday schedule, or making sure the course fits your goal?"
             },
             {
-                id: 20,
+                id: 31,
                 category: "Follow-Ups",
-                title: "Client says: 'I will pay on payday'",
+                title: "30. Client says: 'I will pay on payday'",
                 intent: "Creating urgency for the 5k deposit",
                 text: "That makes total sense!\n\nEnrolment for Cohort 1 closes on *Wednesday 12th August* to keep our class capped at 40 students.\n\nCan you put down just *₦5,000 today* to hold your seat, so you do not lose your slot before payday?"
             },
             {
-                id: 21,
+                id: 32,
                 category: "Follow-Ups",
-                title: "Day 3 Silence Check (BEST PERFORMING)",
+                title: "31. When is the deadline to pay?",
+                intent: "Re-confirming all dates",
+                text: "Enrolment closes on *Wednesday 12th August*, and Class 1 starts *Saturday 15th August*.\n\n1st installment is due August 21st and 2nd installment is due September 18th.\n\nCan you lock your ₦5,000 slot today, or would tomorrow morning work better?"
+            },
+
+            // SECTION 7: Anti-Ghosting Triggers
+            {
+                id: 33,
+                category: "Follow-Ups",
+                title: "Day 1 (24 Hrs later)",
+                intent: "Following up on payment link",
+                text: "Hi [Name] 👋 Just checking in: did the payment link open okay on your phone, or did it give you any issues?"
+            },
+            {
+                id: 34,
+                category: "Follow-Ups",
+                title: "Day 3 (Stalled Chat - BEST SCRIPT)",
                 intent: "When they ghosted you for 3 days",
                 text: "Hi [Name], I will stop guessing and just ask!\n\nWhat is holding you back right now: money, timing, or you are not sure if data analysis is right for you?\n\nWhichever it is, tell me and I will either help you out or leave you be!"
             },
             {
-                id: 22,
+                id: 35,
                 category: "Follow-Ups",
-                title: "Day 7 Scarcity Close",
+                title: "Day 5 (60-Sec Phone Call)",
+                intent: "Script for calling them",
+                text: "Hi [Name]! Temidayo from LeadarX here. Noticed you enquired about our Data Analysis cohort on WhatsApp. Just wanted to ask if you had any quick question before enrollment closes August 12th?"
+            },
+            {
+                id: 36,
+                category: "Follow-Ups",
+                title: "Day 7 (Scarcity Close)",
                 intent: "When deadline is close",
                 text: "Hi [Name], quick update: Cohort 1 is currently at *32 of 40 seats*.\n\nEnrolment closes Wednesday 12th August. Should I hold your slot with the ₦5,000 deposit, or release it to the next applicant?"
             },
             {
-                id: 23,
+                id: 37,
                 category: "Follow-Ups",
                 title: "Day 10 The Breakup (Fear of Loss)",
                 intent: "Final resort to wake them up",
                 text: "Hi [Name], I am closing out the Cohort 1 roster today and releasing the final unconfirmed seats.\n\nLet me know if I should officially cross your name off the list, or if you still want to hold your slot?"
+            },
+
+            // QUICK-REPLY SHORTCUTS
+            {
+                id: 38,
+                category: "Quick Shortcuts",
+                title: "/price (Full Overview)",
+                intent: "Quick price summary",
+                text: "Real-Time is *₦65k*, Self-Paced is *₦45k*, One-on-One is *₦295k*. All start with just *₦5k* today! Save up to ₦10k if you pay in full. Which plan fits you best?"
+            },
+            {
+                id: 39,
+                category: "Quick Shortcuts",
+                title: "/installments (Dates)",
+                intent: "Quick installment dates",
+                text: "₦5k deposit today. 1st installment due *Aug 21* (₦35k Real-Time / ₦25k Self-Paced). 2nd installment due *Sept 18* (₦25k Real-Time / ₦15k Self-Paced). Should I create your portal account now?"
+            },
+            {
+                id: 40,
+                category: "Quick Shortcuts",
+                title: "/wallet (Accumulation)",
+                intent: "Quick wallet explanation",
+                text: "You do not need all the money at once! Deposit *₦1,000 or more* into your LeadarX wallet bit by bit anytime before Aug 21 and Sept 18. Does that make it easy for you?"
+            },
+            {
+                id: 41,
+                category: "Quick Shortcuts",
+                title: "/deadlines (Scarcity)",
+                intent: "Quick deadlines check",
+                text: "Enrollment closes *Wednesday Aug 12*. Class 1 starts *Saturday Aug 15*. 1st installment due Aug 21, 2nd installment due Sept 18. Can you lock your ₦5k slot today or tomorrow?"
+            },
+            {
+                id: 42,
+                category: "Quick Shortcuts",
+                title: "/realtime (Tier 1)",
+                intent: "Quick Real-Time details",
+                text: "Real-Time is *₦65,000* total. Live Saturdays 8am to 11am on Teams + recordings + certificate. Start with *₦5,000* today, ₦35k by Aug 21, ₦25k by Sept 18. Does Saturday morning work for you?"
+            },
+            {
+                id: 43,
+                category: "Quick Shortcuts",
+                title: "/selfpaced (Tier 2)",
+                intent: "Quick Self-Paced details",
+                text: "Self-Paced is *₦45,000* total. 24/7 video access, learn at your pace + certificate. Start with *₦5,000* today, ₦25k by Aug 21, ₦15k by Sept 18. Does learning at your own speed suit you better?"
+            },
+            {
+                id: 44,
+                category: "Quick Shortcuts",
+                title: "/oneonone (Tier 3)",
+                intent: "Quick One-on-One details",
+                text: "One-on-One is *₦295,000* total. Personal tutor + custom schedule. Start with *₦5,000* today, ₦160k by Aug 21, ₦130k by Sept 18. (Save ₦10k if paid in full). Should I schedule your tutor call?"
+            },
+            {
+                id: 45,
+                category: "Quick Shortcuts",
+                title: "/discount (Savings)",
+                intent: "Quick upfront discounts",
+                text: "Pay in full today and save! Real-Time is *₦60k* (saves ₦5k), Self-Paced is *₦42k* (saves ₦3k), One-on-One is *₦285k* (saves ₦10k). Would you like full pay or ₦5k deposit?"
+            },
+            {
+                id: 46,
+                category: "Quick Shortcuts",
+                title: "/youtube (Objection)",
+                intent: "Quick YouTube counter",
+                text: "YouTube gives you information, not transformation. Here you get live mentor support, real-world structured projects, and a verifiable certificate. Are you looking to become job-ready fast?"
+            },
+            {
+                id: 47,
+                category: "Quick Shortcuts",
+                title: "/notime (Objection)",
+                intent: "Quick Time counter",
+                text: "70% of our students are working professionals! Live class is just 3 hours on Saturday. Plus, you get recordings to watch in chunks. Can you dedicate 3 hours on a weekend?"
+            },
+            {
+                id: 48,
+                category: "Quick Shortcuts",
+                title: "/beginner (Fears)",
+                intent: "Quick zero-experience reply",
+                text: "90% of our students start from zero! Week 1 is 'What is Data Analysis' with no math or coding. What worries you most: the tools or the pace?"
+            },
+            {
+                id: 49,
+                category: "Quick Shortcuts",
+                title: "/laptop (Fears)",
+                intent: "Quick hardware reply",
+                text: "You can watch live lectures on your phone! For practicals (Excel & Power BI), you need access to a laptop by Week 3. Do you have a laptop or borrowing one before Aug 15?"
+            },
+            {
+                id: 50,
+                category: "Quick Shortcuts",
+                title: "/jobs (Guarantee)",
+                intent: "Quick job reality check",
+                text: "Nobody can promise a job (anyone who does is lying!). We give you CV writing, LinkedIn optimization, interview prep and a portfolio project. Are you job hunting now?"
+            },
+            {
+                id: 51,
+                category: "Quick Shortcuts",
+                title: "/proof (Legitimacy)",
+                intent: "Quick scam reply",
+                text: "Check leadarx.com (RC: 9719635) or view student project samples! Start with *₦5,000* to test portal access first. Should I drop sample Power BI projects here?"
+            },
+            {
+                id: 52,
+                category: "Quick Shortcuts",
+                title: "/stuck (Ghosted)",
+                intent: "Quick re-engagement",
+                text: "I will stop guessing and just ask: what is holding you back? Money, timing, or not sure if it is for you? Tell me and I will either help or leave you be!"
+            },
+            {
+                id: 53,
+                category: "Quick Shortcuts",
+                title: "/close (Payment)",
+                intent: "Quick account setup",
+                text: "What email address should I use to create your portal account and payment link right now?"
+            },
+            {
+                id: 54,
+                category: "Quick Shortcuts",
+                title: "/payday (Timing)",
+                intent: "Quick payday reply",
+                text: "Enrollment closes *Aug 12*. Put down *₦5,000 today* to hold your seat so you do not lose your slot before payday. Can you complete ₦5k today or tomorrow?"
+            },
+
+            // THE CHECKLIST
+            {
+                id: 55,
+                category: "Daily Checklist",
+                title: "📋 The Rep Daily Anti-Ghosting Checklist",
+                intent: "Review this daily before messaging clients!",
+                text: "1. No em-dashes used anywhere.\n2. Enrollment Deadline: Always mention enrollment closes August 12.\n3. Exact Installment Deadlines: August 21 (1st) and September 18 (2nd).\n4. Wallet Flexibility: Explain bit-by-bit ₦1,000+ wallet top-ups anytime before deadlines.\n5. 3 Class Formats: Real-Time (₦65k), Self-Paced (₦45k), One-on-One (₦295k).\n6. Full Pay Savings: ₦60k (Real-Time), ₦42k (Self-Paced), ₦285k (One-on-One).\n7. Short Messages: Max 3 lines per bubble, ending in a 2-choice question."
             }
         ];
 
