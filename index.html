@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeadarX Sales Playbook</title>
+    <style>
+        :root {
+            --primary: #25D366; /* WhatsApp Green */
+            --primary-dark: #128C7E;
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-main: #111b21;
+            --text-muted: #667781;
+            --border: #d1d7db;
+            --warning: #ffcc00;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding-bottom: 80px; /* Space for bottom nav if added later */
+        }
+
+        .header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .categories {
+            display: flex;
+            overflow-x: auto;
+            padding: 1rem;
+            gap: 0.5rem;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            scrollbar-width: none; /* Firefox */
+        }
+        
+        .categories::-webkit-scrollbar { 
+            display: none; /* Chrome */
+        }
+
+        .category-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .category-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .script-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+        }
+
+        .script-title {
+            font-weight: bold;
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+            color: var(--primary-dark);
+        }
+
+        .script-intent {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .script-content {
+            background: #e7f8f3;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .copy-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:active {
+            background: var(--primary-dark);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .alert-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffecb5;
+            padding: 1rem;
+            margin: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #664d03;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🚀 LeadarX Playbook</h1>
+        <input type="text" class="search-bar" id="searchInput" placeholder="Search scripts (e.g., laptop, price, time)...">
+    </div>
+    
+    <div class="alert-box">
+        <strong>⚡ Deadlines:</strong> Enroll closes Aug 12. 1st Install Aug 21. 2nd Install Sept 18.
+    </div>
+
+    <div class="categories" id="categoryContainer">
+        <!-- Categories injected via JS -->
+    </div>
+
+    <div class="container" id="scriptsContainer">
+        <!-- Scripts injected via JS -->
+    </div>
+
+    <div class="toast" id="toast">Copied to clipboard! ✓</div>
+
+    <script>
+        const scriptsData = [
+            // SECTION 1: Pricing & Options
+            {
+                id: 1,
+                category: "Pricing & Plans",
+                title: "How much is the course? (Send Price)",
+                intent: "Client asks for price without context",
+                text: "Hi [Name]! Temidayo here from LeadarX.\n\nQuick one before I send pricing: are you looking to learn Data Analysis to *grow in your current job*, or *land a fresh new role*?"
+            },
+            {
+                id: 2,
+                category: "Pricing & Plans",
+                title: "3 Class Options",
+                intent: "Send after they answer the first question",
+                text: "Awesome! We have 3 flexible class options depending on your schedule:\n\n1. *Real-Time Live Class:* ₦65,000 total (Saturdays 8am to 11am live on Zoom/Teams).\n2. *Self-Paced Class:* ₦45,000 total (24/7 pre-recorded video lessons).\n3. *One-on-One Class:* ₦295,000 total (Personal dedicated instructor).\n\nBest part: *you only pay ₦5,000 today to lock your seat!*\n\nWhich of these 3 options fits your learning style best?"
+            },
+            {
+                id: 3,
+                category: "Pricing & Plans",
+                title: "How do installments work?",
+                intent: "Explaining the 3 payment splits",
+                text: "We split tuition into 3 light payments so you do not feel the weight:\n\n1. *Today:* ₦5,000 deposit (Locks your seat before enrollment closes August 12).\n2. *August 21st (1st Installment):* ₦35,000 for Real-Time (or ₦25,000 for Self-Paced).\n3. *September 18th (2nd Installment):* ₦25,000 for Real-Time (or ₦15,000 for Self-Paced).\n\nPlus, you can top up *₦1,000 or more* into your wallet anytime before the due dates!\n\nShould I set up your portal account right now so you can see the payment breakdown?"
+            },
+            {
+                id: 4,
+                category: "Pricing & Plans",
+                title: "Full Payment Discount",
+                intent: "Client wants to pay at once",
+                text: "Yes! We offer a full-payment discount if you pay 100% upfront today:\n\n1. *Real-Time Live:* Pay *₦60,000* at once (saves you ₦5,000 instantly).\n2. *Self-Paced:* Pay *₦42,000* at once (saves you ₦3,000 instantly).\n3. *One-on-One:* Pay *₦285,000* at once (saves you ₦10,000 instantly).\n\nWould you prefer to take the full-payment discount today, or start with the *₦5,000 deposit*?"
+            },
+            {
+                id: 5,
+                category: "Pricing & Plans",
+                title: "Wallet Payment Logic",
+                intent: "Explaining flexible top-ups",
+                text: "We have the most flexible payment system in Nigeria!\n\nYou start with just *₦5,000 application deposit* today. After that, you can add *₦1,000, ₦2,000, or any amount* into your LeadarX portal wallet bit by bit whenever you have spare cash!\n\nAs long as your 1st installment lands on or before *August 21st* and your 2nd installment lands on or before *September 18th*, your portal stays active.\n\nDoes paying bit by bit into your wallet make it stress-free for you?"
+            },
+            {
+                id: 6,
+                category: "Pricing & Plans",
+                title: "It is too expensive / No money",
+                intent: "Handling the money objection using ROI and Wallet",
+                text: "I completely understand [Name]! Money is tight right now.\n\nThat is why we created the *LeadarX Wallet*: you do not need full tuition at once. You can deposit *₦1,000 or ₦2,000* into your portal wallet whenever you have extra cash before August 21st and September 18th!\n\nPlus, entry-level data analysts in Nigeria earn *₦150,000 to ₦250,000 monthly*. You earn this tuition back in under 3 weeks on the job.\n\nIf you start with just *₦5,000 today*, would that make it manageable for you?"
+            },
+
+            // SECTION 2: Advanced Objections
+            {
+                id: 7,
+                category: "Objections (Pro)",
+                title: "I can learn it on YouTube",
+                intent: "When client thinks free resources are enough",
+                text: "You can definitely find great videos on YouTube [Name]! The challenge is YouTube gives you *information*, not *transformation*.\n\nWhen you get stuck on a complex SQL error in Week 4, YouTube cannot review your screen. Here, you get live mentor support, structured real-world projects, and a *verifiable certificate* employers trust.\n\nAre you looking for just casual learning, or to become job-ready fast?"
+            },
+            {
+                id: 8,
+                category: "Objections (Pro)",
+                title: "I need to discuss with my spouse",
+                intent: "When client stalls for partner approval",
+                text: "Absolutely [Name], family comes first!\n\nTo help them understand the value, should I send you a quick 1-page summary showing how this 10-week program can boost your family's income by ₦150k to ₦250k monthly?"
+            },
+            {
+                id: 9,
+                category: "Objections (Pro)",
+                title: "I am too busy with work/kids",
+                intent: "Handling the 'No Time' objection",
+                text: "That is exactly why 70% of our students are working parents and professionals!\n\nThe live class is only 3 hours on Saturday morning. Plus, we upload the recordings so you can watch in 20-minute chunks during the week when the kids are asleep.\n\nDoes dedicating just 3 hours on a Saturday sound like something you can squeeze in?"
+            },
+
+            // SECTION 3: Fears & Logistics
+            {
+                id: 10,
+                category: "Fears & Logistics",
+                title: "I am a complete beginner",
+                intent: "Client is scared of math/coding",
+                text: "Honestly [Name], 90% of our students start from absolute ZERO!\n\nWeek 1 starts with *'What is Data Analysis?'*. There is zero coding and no math beyond checking your bank alert. We teach you step-by-step using Excel, SQL, and Power BI.\n\nWhat is your biggest concern right now: learning the tools or finding time to study?"
+            },
+            {
+                id: 11,
+                category: "Fears & Logistics",
+                title: "Do I need a laptop?",
+                intent: "Hardware requirements",
+                text: "You can watch all live classes and video lessons directly on your phone! 📱\n\nHowever, to practice Excel, SQL, and Power BI for your portfolio project, you will need access to a laptop or desktop computer (even a borrowed one works great).\n\nDo you already have a laptop, or plan to get access to one before Class 1 on Aug 15th?"
+            },
+            {
+                id: 12,
+                category: "Fears & Logistics",
+                title: "I don't have a laptop yet",
+                intent: "Client wants to join but has no laptop",
+                text: "Yes, absolutely! You can join Cohort 1 today with your *₦5,000 deposit* before enrollment closes August 12th.\n\nYou can watch the first 2 weeks of lectures on your phone while arranging a laptop before practical project assignments begin in Week 3.\n\nShould we lock your seat today so you do not miss Cohort 1 registration?"
+            },
+            {
+                id: 13,
+                category: "Fears & Logistics",
+                title: "Can I transition from Nursing/Law/Teaching?",
+                intent: "Career switchers",
+                text: "That is actually your BIGGEST advantage! 🔥\n\nCompanies love data analysts who understand industries like healthcare, finance, or education. You already understand how business works; we just teach you how to analyze the numbers.\n\nAre you looking to apply data skills in your current industry, or switch to tech completely?"
+            },
+            {
+                id: 14,
+                category: "Fears & Logistics",
+                title: "What if I miss a live class?",
+                intent: "Missing Saturday class",
+                text: "No worries at all! Every live class is recorded in HD and uploaded to your student portal within 2 hours.\n\nYou can rewatch it anytime, 24/7, on your phone or laptop.\n\nWould Saturday live classes fit your routine, or would you rely more on recordings?"
+            },
+
+            // SECTION 4: Jobs & Legitimacy
+            {
+                id: 15,
+                category: "Jobs & Trust",
+                title: "Will you get me a job?",
+                intent: "The Job Guarantee Truth",
+                text: "Straight talk [Name]: nobody can promise you a job, and anyone who does is lying to you!\n\nHere is what we DO: We have a full module called *'Getting A Job As A Data Analyst'*. We rewrite your CV, optimize your LinkedIn profile, prepare you for interviews, and build a *real portfolio project* to present to employers.\n\nWe make you employable; the applying is yours!\n\nAre you actively job hunting right now, or preparing for later?"
+            },
+            {
+                id: 16,
+                category: "Jobs & Trust",
+                title: "Is this a scam?",
+                intent: "Building Trust",
+                text: "I love that you are cautious; there are too many scams online!\n\nYou can check our official website at https://leadarx.com (RC: 9719635) or view student project samples.\n\nPlus, you only pay *₦5,000 to start*, and you get instant portal access before paying any balance.\n\nShould I drop a sample of a student Power BI project here for you to see?"
+            },
+            {
+                id: 17,
+                category: "Jobs & Trust",
+                title: "Will I get a certificate?",
+                intent: "Verifiable certificates",
+                text: "Yes! You receive an official *Verifiable LeadarX Certificate of Completion* with a unique ID that employers can verify online at leadarx.com/verify.\n\nYou can attach it directly to your CV and LinkedIn profile.\n\nShould I show you how our certificate verification portal works?"
+            },
+
+            // SECTION 5: Anti-Ghosting Follow-Ups
+            {
+                id: 18,
+                category: "Follow-Ups",
+                title: "Client says: 'Okay / Noted'",
+                intent: "Never say 'Alright'. Reply with this:",
+                text: "Awesome! So what is the verdict [Name]: Real-Time Live Class, Self-Paced, or One-on-One?"
+            },
+            {
+                id: 19,
+                category: "Follow-Ups",
+                title: "Client says: 'I will think about it'",
+                intent: "Isolating the objection",
+                text: "No problem at all, take your time!\n\nJust so I do not bother you unnecessarily: what is the main thing on your mind: the price, the Saturday schedule, or making sure the course fits your goal?"
+            },
+            {
+                id: 20,
+                category: "Follow-Ups",
+                title: "Client says: 'I will pay on payday'",
+                intent: "Creating urgency for the 5k deposit",
+                text: "That makes total sense!\n\nEnrolment for Cohort 1 closes on *Wednesday 12th August* to keep our class capped at 40 students.\n\nCan you put down just *₦5,000 today* to hold your seat, so you do not lose your slot before payday?"
+            },
+            {
+                id: 21,
+                category: "Follow-Ups",
+                title: "Day 3 Silence Check (BEST PERFORMING)",
+                intent: "When they ghosted you for 3 days",
+                text: "Hi [Name], I will stop guessing and just ask!\n\nWhat is holding you back right now: money, timing, or you are not sure if data analysis is right for you?\n\nWhichever it is, tell me and I will either help you out or leave you be!"
+            },
+            {
+                id: 22,
+                category: "Follow-Ups",
+                title: "Day 7 Scarcity Close",
+                intent: "When deadline is close",
+                text: "Hi [Name], quick update: Cohort 1 is currently at *32 of 40 seats*.\n\nEnrolment closes Wednesday 12th August. Should I hold your slot with the ₦5,000 deposit, or release it to the next applicant?"
+            },
+            {
+                id: 23,
+                category: "Follow-Ups",
+                title: "Day 10 The Breakup (Fear of Loss)",
+                intent: "Final resort to wake them up",
+                text: "Hi [Name], I am closing out the Cohort 1 roster today and releasing the final unconfirmed seats.\n\nLet me know if I should officially cross your name off the list, or if you still want to hold your slot?"
+            }
+        ];
+
+        let currentCategory = "All";
+        const categories = ["All", ...new Set(scriptsData.map(s => s.category))];
+
+        const categoryContainer = document.getElementById('categoryContainer');
+        const scriptsContainer = document.getElementById('scriptsContainer');
+        const searchInput = document.getElementById('searchInput');
+        const toast = document.getElementById('toast');
+
+        // Render Categories
+        function renderCategories() {
+            categoryContainer.innerHTML = categories.map(cat => `
+                <button class="category-btn ${cat === currentCategory ? 'active' : ''}" 
+                        onclick="setCategory('${cat}')">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function setCategory(cat) {
+            currentCategory = cat;
+            searchInput.value = ''; // clear search
+            renderCategories();
+            renderScripts();
+        }
+
+        // Search Logic
+        searchInput.addEventListener('input', (e) => {
+            currentCategory = "All";
+            renderCategories();
+            renderScripts(e.target.value.toLowerCase());
+        });
+
+        // Copy Function
+        function copyText(id) {
+            const script = scriptsData.find(s => s.id === id);
+            if (script) {
+                navigator.clipboard.writeText(script.text).then(() => {
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    alert("Copy failed. Please try selecting the text manually.");
+                });
+            }
+        }
+
+        // Render Scripts
+        function renderScripts(searchTerm = "") {
+            const filtered = scriptsData.filter(script => {
+                const matchesCategory = currentCategory === "All" || script.category === currentCategory;
+                const matchesSearch = script.title.toLowerCase().includes(searchTerm) || 
+                                      script.text.toLowerCase().includes(searchTerm) ||
+                                      script.intent.toLowerCase().includes(searchTerm);
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                scriptsContainer.innerHTML = `<p style="text-align:center; color:#667781; margin-top: 2rem;">No scripts found.</p>`;
+                return;
+            }
+
+            scriptsContainer.innerHTML = filtered.map(script => `
+                <div class="script-card">
+                    <div class="script-title">${script.title}</div>
+                    <div class="script-intent">${script.intent}</div>
+                    <div class="script-content">${script.text}</div>
+                    <button class="copy-btn" onclick="copyText(${script.id})">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        Copy to WhatsApp
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Initial Load
+        renderCategories();
+        renderScripts();
+
+    </script>
+</body>
+</html>
