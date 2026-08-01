@@ -6,7 +6,7 @@
     <title>LeadarX Sales Playbook</title>
     <style>
         :root {
-            --primary: #25D366; /* WhatsApp Green */
+            --primary: #25D366; 
             --primary-dark: #128C7E;
             --bg-color: #f0f2f5;
             --card-bg: #ffffff;
@@ -175,6 +175,17 @@
             font-size: 0.9rem;
             color: #664d03;
         }
+        
+        .version-log {
+            background: #e8f4fd;
+            border-left: 4px solid #1890ff;
+            padding: 1rem;
+            margin: 1rem;
+            margin-bottom: 0;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #0050b3;
+        }
 
     </style>
 </head>
@@ -185,9 +196,17 @@
         <input type="text" class="search-bar" id="searchInput" placeholder="Search scripts (e.g., laptop, price, time)...">
     </div>
     
+    <div class="version-log">
+        <strong>📋 Version Log (Aug 1, 2026):</strong><br>
+        - Updated qualification flow (2 questions before pricing).<br>
+        - Added Wed 6-9pm schedule.<br>
+        - Added Scholarship & Cost objections.<br>
+        <em>- AI Editor</em>
+    </div>
+
     <div class="alert-box">
         <strong>⚡ Deadlines:</strong> Enroll closes Aug 12. 1st Install Aug 21. 2nd Install Sept 18.
-        <br><small style="color: #856404; display:block; margin-top: 5px;"><i>Last Updated: July 31, 2026 at 11:33 AM</i></small>
+        <br><small style="color: #856404; display:block; margin-top: 5px;"><i>Last Updated: August 1, 2026 at 2:32 AM</i></small>
     </div>
 
     <div class="categories" id="categoryContainer">
@@ -202,23 +221,44 @@
 
     <script>
         const scriptsData = [
-            // SECTION 1: Pricing & Options
+            // SECTION 1: Qualification & Pricing
             {
                 id: 1,
-                category: "Pricing & Plans",
+                category: "1. Qualify & Pitch",
                 title: "1. How much is the course?",
                 intent: "Client asks for price without context",
                 text: "Hi [Name]! Temidayo here from LeadarX.\n\nQuick one before I send pricing: are you looking to learn Data Analysis to *grow in your current job*, or *land a fresh new role*?"
             },
             {
-                id: 2,
-                category: "Pricing & Plans",
-                title: "1.1 The 3 Class Options",
-                intent: "Send after they answer the first question",
-                text: "Awesome! We have 3 flexible class options depending on your schedule:\n\n1. *Real-Time Live Class:* ₦65,000 total (Saturdays 8am to 11am live on Zoom/Teams).\n2. *Self-Paced Class:* ₦45,000 total (24/7 pre-recorded video lessons).\n3. *One-on-One Class:* ₦295,000 total (Personal dedicated instructor).\n\nBest part: *you only pay ₦5,000 today to lock your seat!*\n\nWhich of these 3 options fits your learning style best?"
+                id: 101,
+                category: "1. Qualify & Pitch",
+                title: "1.1 Qualifying Experience",
+                intent: "Send after they answer Q1 (Job goal)",
+                text: "Awesome! To make sure I recommend the best track for you: do you have any prior experience using Excel, or are we starting completely from scratch?"
+            },
+            {
+                id: 102,
+                category: "1. Qualify & Pitch",
+                title: "1.2 Qualifying Schedule",
+                intent: "Send after they answer Q2 (Experience)",
+                text: "Perfect, we will build you from the ground up! Quick question: does dedicating a Saturday morning (8am-11am) or Wednesday evening (6pm-9pm) work for you, or do you need something more flexible?"
             },
             {
                 id: 103,
+                category: "1. Qualify & Pitch",
+                title: "1.3 The Recommendation (e.g. Real-Time)",
+                intent: "The final pitch with 5k deposit hook",
+                text: "Based on that, our *Real-Time Class* (₦65k total) is the perfect fit! You get live classes where you practice along with the instructor, plus lifetime access to recordings. Best part: you only pay *₦5,000 today* to lock your seat! Should I set up your portal so you can secure your spot?"
+            },
+            {
+                id: 2,
+                category: "1. Qualify & Pitch",
+                title: "Fallback: Show All 3 Options",
+                intent: "ONLY use if client explicitly demands all options",
+                text: "We have 3 flexible class options depending on your schedule:\n\n1. *Real-Time Live Class:* ₦65,000 total (Saturdays 8am-11am OR Weds 6pm-9pm).\n2. *Self-Paced Class:* ₦45,000 total (24/7 pre-recorded lessons).\n3. *One-on-One Class:* ₦295,000 total (Personal dedicated instructor).\n\nBest part: *you only pay ₦5,000 today to lock your seat!*\n\nWhich of these fits your learning style best?"
+            },
+            {
+                id: 105,
                 category: "Pricing & Plans",
                 title: "1.5 Physical Class Pricing (Ibadan)",
                 intent: "Client explicitly asks for physical classes",
@@ -243,7 +283,7 @@
                 category: "Pricing & Plans",
                 title: "3.5. Tell me more about Real-Time",
                 intent: "Detailing the live online tier",
-                text: "Our *Real-Time Class (₦65,000)* is our most popular program!\n\nYou join live interactive classes every Saturday (8am-11am) where you can practice along with the instructor step-by-step. Plus, you get *lifetime access* to all class lesson recordings and premium study resources.\n\nPayment breakdown: ₦5,000 deposit today, ₦35,000 by August 21st, and ₦25,000 by September 18th.\n\nDoes dedicating your Saturday mornings work best for your schedule?"
+                text: "Our *Real-Time Class (₦65,000)* is our most popular program!\n\nYou join live interactive classes every Saturday (8am-11am) OR Wednesday (6pm-9pm) where you can practice along with the instructor step-by-step. Plus, you get *lifetime access* to all class lesson recordings and premium study resources.\n\nPayment breakdown: ₦5,000 deposit today, ₦35,000 by August 21st, and ₦25,000 by September 18th.\n\nDoes dedicating your Saturdays or Wednesdays work best for your schedule?"
             },
             {
                 id: 5,
@@ -257,7 +297,7 @@
                 category: "Pricing & Plans",
                 title: "5. Tell me more about Self-Paced",
                 intent: "Detailing the pre-recorded tier",
-                text: "Our *Self-Paced Class (₦45,000)* is built for super busy professionals!\n\nYou get 24/7 lifetime access to all HD video modules (Excel, SQL, Power BI, Python), study materials, instructor Q&A support, and the official verifiable certificate.\n\nPayment breakdown: ₦5,000 deposit today, ₦25,000 by August 21st, and ₦15,000 by September 18th. (Or pay ₦42,000 at once to save ₦3,000).\n\nDoes learning on your own weekly schedule work better for you than live Saturday classes?"
+                text: "Our *Self-Paced Class (₦45,000)* is built for super busy professionals!\n\nYou get 24/7 lifetime access to all HD video modules (Excel, SQL, Power BI, Python), study materials, instructor Q&A support, and the official verifiable certificate.\n\nPayment breakdown: ₦5,000 deposit today, ₦25,000 by August 21st, and ₦15,000 by September 18th. (Or pay ₦42,000 at once to save ₦3,000).\n\nDoes learning on your own weekly schedule work better for you than live classes?"
             },
             {
                 id: 7,
@@ -308,7 +348,21 @@
                 category: "Objections (Pro)",
                 title: "12. I am too busy with work/kids",
                 intent: "Handling the 'No Time' objection",
-                text: "That is exactly why 70% of our students are working parents and professionals!\n\nThe live class is only 3 hours on Saturday morning. Plus, we upload the recordings so you can watch in 20-minute chunks during the week when the kids are asleep.\n\nDoes dedicating just 3 hours on a Saturday sound like something you can squeeze in?"
+                text: "That is exactly why 70% of our students are working parents and professionals!\n\nOur live classes are only 3 hours on Saturday morning (or Wednesday evening). Plus, we upload the recordings so you can watch in 20-minute chunks during the week when the kids are asleep.\n\nDoes dedicating just 3 hours on a weekend or evening sound like something you can squeeze in?"
+            },
+            {
+                id: 106,
+                category: "Objections (Pro)",
+                title: "12.1. I heard about a scholarship",
+                intent: "When a lead thinks it's free/subsidized",
+                text: "I completely understand the confusion! To be perfectly transparent, LeadarX does not offer any scholarships right now. Any legitimate offers will only ever come directly from leadarx.com or our official pages.\n\nHowever, this is exactly why we built the *LeadarX Wallet*! You don't need to pay full tuition at once—you can start with just a ₦5,000 deposit. Does the wallet plan make it easier for you to start?"
+            },
+            {
+                id: 107,
+                category: "Objections (Pro)",
+                title: "12.2. Is this the exact fee I need to pay?",
+                intent: "Cost clarification & reassurance",
+                text: "Yes [Name], that is the exact total tuition—there are absolutely no hidden fees!\n\nTo break it down simply: you pay a ₦5,000 deposit today to lock your seat, and the balance is split into two installments later on.\n\nDoes that make sense, or should I explain the wallet system?"
             },
 
             // SECTION 3: Fears & Logistics
@@ -348,7 +402,7 @@
                 text: "No age limit and no degree required!\n\nEmployers in data analysis only care about one thing: *Can you build dashboards and clean data?* That is why you graduate with a real portfolio project to prove your skills.\n\nAre you currently working, studying, or looking for fresh opportunities?"
             },
             {
-                id: 101,
+                id: 108,
                 category: "Fears & Logistics",
                 title: "17.5. Unknown Question Safety",
                 intent: "When a client asks something not in this playbook",
@@ -364,7 +418,7 @@
                 text: "Our physical training facility is located at *Akobo, Ibadan, Nigeria*! 🏢\n\nHowever, to save you the stress of traffic and accommodate working professionals globally, this upcoming Data Analysis Cohort runs *100% online* via Microsoft Teams.\n\nAre you based in Ibadan, or will you be joining us from another city/country?"
             },
             {
-                id: 102,
+                id: 109,
                 category: "Format & Schedule",
                 title: "18.5. Do you have a 10-day crash course?",
                 intent: "When a client wants a rushed/short program",
@@ -374,8 +428,8 @@
                 id: 20,
                 category: "Format & Schedule",
                 title: "19. What if I miss a live class?",
-                intent: "Missing Saturday class",
-                text: "No worries at all! Every live class is recorded in HD and uploaded to your student portal within 2 hours.\n\nYou can rewatch it anytime, 24/7, on your phone or laptop.\n\nWould Saturday live classes fit your routine, or would you rely more on recordings?"
+                intent: "Missing class",
+                text: "No worries at all! Every live class is recorded in HD and uploaded to your student portal within 2 hours.\n\nYou can rewatch it anytime, 24/7, on your phone or laptop.\n\nWould live classes fit your routine, or would you rely more on recordings?"
             },
             {
                 id: 21,
@@ -396,7 +450,7 @@
                 category: "Format & Schedule",
                 title: "22. Can I do this with a full-time job?",
                 intent: "Busy workers",
-                text: "Yes! Over 70% of our students work full-time jobs.\n\nLive classes run only on *Saturdays (8am to 11am)*, leaving your weekdays completely free. If you ever work on Saturday, you can watch the recording in the evening.\n\nDoes 3 hours on Saturday morning sound workable with your job schedule?"
+                text: "Yes! Over 70% of our students work full-time jobs.\n\nWe have two live tracks! You can join on *Saturdays (8am-11am)* or our alternate track on *Wednesdays (6pm-9pm)*. \n\nWhich of these two fits your schedule better?"
             },
 
             // SECTION 5: Jobs & Trust
@@ -442,14 +496,14 @@
                 category: "Follow-Ups",
                 title: "28. Client says: 'Okay / Noted'",
                 intent: "Never say 'Alright'. Reply with this:",
-                text: "Awesome! So what is the verdict [Name]: Real-Time Live Class, Self-Paced, or One-on-One?"
+                text: "Awesome! Should I go ahead and lock in your seat for the [Real-Time / Self-Paced] class then?"
             },
             {
                 id: 30,
                 category: "Follow-Ups",
                 title: "29. Client says: 'I will think about it'",
                 intent: "Isolating the objection",
-                text: "No problem at all, take your time!\n\nJust so I do not bother you unnecessarily: what is the main thing on your mind: the price, the Saturday schedule, or making sure the course fits your goal?"
+                text: "No problem at all, take your time!\n\nJust so I do not bother you unnecessarily: what is the main thing on your mind: the price, the schedule, or making sure the course fits your goal?"
             },
             {
                 id: 31,
@@ -537,7 +591,7 @@
                 category: "Quick Shortcuts",
                 title: "/realtime (Tier 1)",
                 intent: "Quick Real-Time details",
-                text: "Real-Time is *₦65,000* total. Live Saturdays 8am to 11am on Teams where you practice along with the instructor! You get lifetime access to class lessons & resources. Start with *₦5,000* today. Does Saturday morning work for you?"
+                text: "Real-Time is *₦65,000* total. Live Saturdays (8am-11am) OR Weds (6pm-9pm) on Teams where you practice along with the instructor! You get lifetime access to class lessons & resources. Start with *₦5,000* today. Does Saturday or Wednesday work for you?"
             },
             {
                 id: 43,
@@ -572,7 +626,7 @@
                 category: "Quick Shortcuts",
                 title: "/notime (Objection)",
                 intent: "Quick Time counter",
-                text: "70% of our students are working professionals! Live class is just 3 hours on Saturday. Plus, you get recordings to watch in chunks. Can you dedicate 3 hours on a weekend?"
+                text: "70% of our students are working professionals! We have weekend and evening live classes. Plus, you get recordings to watch in chunks. Can you dedicate 3 hours a week?"
             },
             {
                 id: 48,
@@ -630,7 +684,7 @@
                 category: "Daily Checklist",
                 title: "📋 The Rep Daily Anti-Ghosting Checklist",
                 intent: "Review this daily before messaging clients!",
-                text: "1. No em-dashes used anywhere.\n2. Enrollment Deadline: Always mention enrollment closes August 12.\n3. Exact Installment Deadlines: August 21 (1st) and September 18 (2nd).\n4. Wallet Flexibility: Explain bit-by-bit ₦1,000+ wallet top-ups anytime before deadlines.\n5. 3 Class Formats: Real-Time (₦65k), Self-Paced (₦45k), One-on-One (₦295k).\n6. Full Pay Savings: ₦60k (Real-Time), ₦42k (Self-Paced), ₦285k (One-on-One).\n7. Short Messages: Max 3 lines per bubble, ending in a 2-choice question."
+                text: "1. No em-dashes used anywhere.\n2. SLA: Reply to new leads within 15–30 minutes during active hours.\n3. Follow the Day 1/3/5/7/10 cadence strictly—do not skip steps when a lead goes quiet.\n4. Qualify First: Ask Experience & Schedule before sending prices.\n5. Single Tier Pitch: Only offer the tier that fits them best. Keep One-on-One hidden unless requested.\n6. Wallet Flexibility: Explain bit-by-bit ₦1,000+ wallet top-ups anytime before deadlines.\n7. Short Messages: Max 3 lines per bubble, ending in a 2-choice question."
             }
         ];
 
