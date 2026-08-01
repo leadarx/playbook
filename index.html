@@ -199,14 +199,16 @@
     <div class="version-log">
         <strong>📋 Version Log (Aug 1, 2026):</strong><br>
         - Updated qualification flow (2 questions before pricing).<br>
-        - Added Wed 6-9pm schedule.<br>
+        - Added Wed 6-9pm schedule [PENDING CONFIRMATION].<br>
         - Added Scholarship & Cost objections.<br>
+        - Fixed Rule 28: Stopped re-offering all tiers after 'Okay/Noted' to lock in single tier.<br>
+        - Added strict CS checklist rules: 15-30m SLA, Day 1-10 cadence enforcement, One-on-One hidden.<br>
         <em>- AI Editor</em>
     </div>
 
     <div class="alert-box">
         <strong>⚡ Deadlines:</strong> Enroll closes Aug 12. 1st Install Aug 21. 2nd Install Sept 18.
-        <br><small style="color: #856404; display:block; margin-top: 5px;"><i>Last Updated: August 1, 2026 at 2:32 AM</i></small>
+        <br><small style="color: #856404; display:block; margin-top: 5px;"><i>Last Updated: August 1, 2026 at 2:46 AM</i></small>
     </div>
 
     <div class="categories" id="categoryContainer">
@@ -246,16 +248,30 @@
             {
                 id: 103,
                 category: "1. Qualify & Pitch",
-                title: "1.3 The Recommendation (e.g. Real-Time)",
+                title: "1.3 Recommendation (If Real-Time)",
                 intent: "The final pitch with 5k deposit hook",
                 text: "Based on that, our *Real-Time Class* (₦65k total) is the perfect fit! You get live classes where you practice along with the instructor, plus lifetime access to recordings. Best part: you only pay *₦5,000 today* to lock your seat! Should I set up your portal so you can secure your spot?"
             },
             {
+                id: 110,
+                category: "1. Qualify & Pitch",
+                title: "1.3 Recommendation (If Self-Paced)",
+                intent: "The final pitch with 5k deposit hook",
+                text: "Based on that, our *Self-Paced Class* (₦45k total) is the perfect fit! You get 24/7 access to all video modules so you can learn completely at your own speed. Best part: you only pay *₦5,000 today* to lock your seat! Should I set up your portal so you can secure your spot?"
+            },
+            {
+                id: 111,
+                category: "1. Qualify & Pitch",
+                title: "1.3 Recommendation (If One-on-One)",
+                intent: "The final pitch with 5k deposit hook",
+                text: "Based on that, our *One-on-One Class* (₦295k total) is the perfect fit! You get a dedicated senior instructor and a customized schedule tailored to your goals. Best part: you only pay *₦5,000 today* to lock your seat! Should I set up your portal so you can secure your spot?"
+            },
+            {
                 id: 2,
                 category: "1. Qualify & Pitch",
-                title: "Fallback: Show All 3 Options",
+                title: "1.4 Fallback: Show All 3 Options",
                 intent: "ONLY use if client explicitly demands all options",
-                text: "We have 3 flexible class options depending on your schedule:\n\n1. *Real-Time Live Class:* ₦65,000 total (Saturdays 8am-11am OR Weds 6pm-9pm).\n2. *Self-Paced Class:* ₦45,000 total (24/7 pre-recorded lessons).\n3. *One-on-One Class:* ₦295,000 total (Personal dedicated instructor).\n\nBest part: *you only pay ₦5,000 today to lock your seat!*\n\nWhich of these fits your learning style best?"
+                text: "We have 3 flexible class options depending on your schedule:\n\n1. *Real-Time Live Class:* ₦65,000 total (Saturdays 8am-11am OR Weds 6pm-9pm [PENDING CONFIRMATION]).\n2. *Self-Paced Class:* ₦45,000 total (24/7 pre-recorded lessons).\n3. *One-on-One Class:* ₦295,000 total (Personal dedicated instructor).\n\nBest part: *you only pay ₦5,000 today to lock your seat!*\n\nWhich of these fits your learning style best?"
             },
             {
                 id: 105,
@@ -283,7 +299,7 @@
                 category: "Pricing & Plans",
                 title: "3.5. Tell me more about Real-Time",
                 intent: "Detailing the live online tier",
-                text: "Our *Real-Time Class (₦65,000)* is our most popular program!\n\nYou join live interactive classes every Saturday (8am-11am) OR Wednesday (6pm-9pm) where you can practice along with the instructor step-by-step. Plus, you get *lifetime access* to all class lesson recordings and premium study resources.\n\nPayment breakdown: ₦5,000 deposit today, ₦35,000 by August 21st, and ₦25,000 by September 18th.\n\nDoes dedicating your Saturdays or Wednesdays work best for your schedule?"
+                text: "Our *Real-Time Class (₦65,000)* is our most popular program!\n\nYou join live interactive classes every Saturday (8am-11am) OR Wednesday (6pm-9pm) [PENDING CONFIRMATION] where you can practice along with the instructor step-by-step. Plus, you get *lifetime access* to all class lesson recordings and premium study resources.\n\nPayment breakdown: ₦5,000 deposit today, ₦35,000 by August 21st, and ₦25,000 by September 18th.\n\nDoes dedicating your Saturdays or Wednesdays work best for your schedule?"
             },
             {
                 id: 5,
@@ -348,7 +364,7 @@
                 category: "Objections (Pro)",
                 title: "12. I am too busy with work/kids",
                 intent: "Handling the 'No Time' objection",
-                text: "That is exactly why 70% of our students are working parents and professionals!\n\nOur live classes are only 3 hours on Saturday morning (or Wednesday evening). Plus, we upload the recordings so you can watch in 20-minute chunks during the week when the kids are asleep.\n\nDoes dedicating just 3 hours on a weekend or evening sound like something you can squeeze in?"
+                text: "That is exactly why 70% of our students are working parents and professionals!\n\nOur live classes are only 3 hours on Saturday morning (or Wednesday evening [PENDING CONFIRMATION]). Plus, we upload the recordings so you can watch in 20-minute chunks during the week when the kids are asleep.\n\nDoes dedicating just 3 hours on a weekend or evening sound like something you can squeeze in?"
             },
             {
                 id: 106,
@@ -450,7 +466,7 @@
                 category: "Format & Schedule",
                 title: "22. Can I do this with a full-time job?",
                 intent: "Busy workers",
-                text: "Yes! Over 70% of our students work full-time jobs.\n\nWe have two live tracks! You can join on *Saturdays (8am-11am)* or our alternate track on *Wednesdays (6pm-9pm)*. \n\nWhich of these two fits your schedule better?"
+                text: "Yes! Over 70% of our students work full-time jobs.\n\nWe have two live tracks! You can join on *Saturdays (8am-11am)* or our alternate track on *Wednesdays (6pm-9pm)* [PENDING CONFIRMATION]. \n\nWhich of these two fits your schedule better?"
             },
 
             // SECTION 5: Jobs & Trust
@@ -591,7 +607,7 @@
                 category: "Quick Shortcuts",
                 title: "/realtime (Tier 1)",
                 intent: "Quick Real-Time details",
-                text: "Real-Time is *₦65,000* total. Live Saturdays (8am-11am) OR Weds (6pm-9pm) on Teams where you practice along with the instructor! You get lifetime access to class lessons & resources. Start with *₦5,000* today. Does Saturday or Wednesday work for you?"
+                text: "Real-Time is *₦65,000* total. Live Saturdays (8am-11am) OR Weds (6pm-9pm) [PENDING CONFIRMATION] on Teams where you practice along with the instructor! You get lifetime access to class lessons & resources. Start with *₦5,000* today. Does Saturday or Wednesday work for you?"
             },
             {
                 id: 43,
@@ -678,13 +694,13 @@
                 text: "Enrollment closes *Aug 12*. Put down *₦5,000 today* to hold your seat so you do not lose your slot before payday. Can you complete ₦5k today or tomorrow?"
             },
 
-            // THE CHECKLIST
+            // THE CHECKLIST (PROCESS GUIDE)
             {
                 id: 55,
-                category: "Daily Checklist",
-                title: "📋 The Rep Daily Anti-Ghosting Checklist",
-                intent: "Review this daily before messaging clients!",
-                text: "1. No em-dashes used anywhere.\n2. SLA: Reply to new leads within 15–30 minutes during active hours.\n3. Follow the Day 1/3/5/7/10 cadence strictly—do not skip steps when a lead goes quiet.\n4. Qualify First: Ask Experience & Schedule before sending prices.\n5. Single Tier Pitch: Only offer the tier that fits them best. Keep One-on-One hidden unless requested.\n6. Wallet Flexibility: Explain bit-by-bit ₦1,000+ wallet top-ups anytime before deadlines.\n7. Short Messages: Max 3 lines per bubble, ending in a 2-choice question."
+                category: "Process Guide",
+                title: "📋 11-Step Core Operating Procedure",
+                intent: "Follow this exact flow for every lead",
+                text: "1. *Answer fast:* Reply within 15–30 mins. If busy, send a holding line.\n2. *Collect basics:* Get name/email gently to open the record.\n3. *Qualify:* Ask one at a time: Goal -> Experience -> Schedule. Never stack questions. Do not send pricing until all 3 are answered.\n4. *Recommend ONE plan:* Present the single best-fit tier with the ₦5k-deposit framing. Hide the others unless asked.\n5. *Handle pushback directly:* Address the specific concern (cost, time, laptop) in one sentence, then steer back to the closing yes/no question. Do not restart the pitch.\n6. *Send link immediately:* The moment they say yes, send the payment link in the same message. Do not ask if you should generate it.\n7. *Confirm payment:* Send portal/group details once payment lands. If unpaid in 24 hours, this is your Day 1 trigger.\n8. *Strict Cadence:* If quiet, follow Day 1/3/5/7/10 nudges exactly. Do not skip a step.\n9. *Escalate unknowns:* Say you'll confirm with the instructor, and do it.\n10. *Log status:* Note where every lead stands after each chat so anyone can jump in.\n11. *Short messages:* Max 3 lines. Always end on a question."
             }
         ];
 
